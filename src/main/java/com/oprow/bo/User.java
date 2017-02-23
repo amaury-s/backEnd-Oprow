@@ -1,67 +1,80 @@
 package com.oprow.bo;
 
-public class User{
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-    protected int mId;
-    protected String mEmail;
-    protected String mFirstName;
-    protected String mLastName;
-    protected String mPassword;
 
-    public int getmId() {
-        return mId;
+public class User {
+
+    private long id;
+    private String email;
+    private String name;
+
+    // Public methods
+
+    public User() { }
+
+    public User(long id) {
+        this.id = id;
     }
 
-    public void setmId(int Id) {
-        this.mId = Id;
+    public User(String email, String name) {
+        this.email = email;
+        this.name = name;
     }
 
-    public String getmEmail() {
-        return mEmail;
+    // Getter and setter methods
+
+
+    public long getId() {
+        return id;
     }
 
-    public void setmEmail(String mEmail) {
-        this.mEmail = mEmail;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getmFirstName() {
-        return mFirstName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setmFirstName(String mFirstName) {
-        this.mFirstName = mFirstName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getmLastName() {
-        return mLastName;
+    public String getName() {
+        return name;
     }
 
-    public void setmLastName(String mLastName) {
-        this.mLastName = mLastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getmPassword() {
-        return mPassword;
-    }
-
-    public void setmPassword(String mPassword) {
-        this.mPassword = mPassword;
-    }
-
-    public User(User pUser) {
-            this.mId = pUser.getmId();
-            this.mEmail = pUser.getmEmail();
-            this.mLastName = pUser.getmLastName();
-            this.mFirstName = pUser.getmFirstName();
-            this.mPassword = pUser.getmPassword();
-    }
-
-    public User() {
-    }
+    // Override of the toString method
 
     @Override
     public String toString(){
-        return "Last name: " + this.mLastName + ", First name: " + this.mFirstName;
+        return "The id is : " + this.id + " , the name is : " + this.name + " , the email is : " + this.email;
     }
 
+    // MapIn and MapOut
+
+    public int mapOut(PreparedStatement pPreparedStatement) throws SQLException {
+        int lIterator = 1;
+        pPreparedStatement.setString(lIterator++, this.name);
+        pPreparedStatement.setString(lIterator++, this.email);
+        return lIterator;
+    }
+
+    public static User mapIn(ResultSet pResultSet) throws SQLException {
+        User lUser = new User();
+        lUser.id = pResultSet.getInt("id");
+        lUser.name = pResultSet.getString("name");
+        lUser.email = pResultSet.getString("email");
+
+        return lUser;
+    }
 }
