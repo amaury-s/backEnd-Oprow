@@ -11,8 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.annotation.Resource;
-import javax.sql.DataSource;
 
 public abstract class Model implements Serializable {
 
@@ -42,7 +40,7 @@ public abstract class Model implements Serializable {
                 + "] : " + e.getMessage());
     }
 
-    protected <R> R select(String pQuery, Preparator<PreparedStatement> pPreparator, Fetcher<ResultSet, R> pFetcher)
+    protected static <R> R select(String pQuery, Preparator<PreparedStatement> pPreparator, Fetcher<ResultSet, R> pFetcher)
             throws TechniqueException {
         try (Connection lConnection = DriverManager.getConnection(DB_URL, USER, PASS);
              PreparedStatement lStatement = lConnection.prepareStatement(pQuery)) {
@@ -58,7 +56,7 @@ public abstract class Model implements Serializable {
 
     }
 
-    protected <R, T> R select(String pQuery, T t, Class<T> clazz,
+    protected static <R, T> R select(String pQuery, T t, Class<T> clazz,
                               BiPreparator<PreparedStatement, T, Class<T>> pPreparator, Fetcher<ResultSet, R> pFetcher)
             throws TechniqueException {
         try (Connection lConnection = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -75,7 +73,7 @@ public abstract class Model implements Serializable {
 
     }
 
-    protected <R> R select(String pQuery, Preparator<PreparedStatement> pPreparator, Fetcher<ResultSet, R> pFetcher,
+    protected static <R> R select(String pQuery, Preparator<PreparedStatement> pPreparator, Fetcher<ResultSet, R> pFetcher,
                            boolean pNeedManipulation) throws TechniqueException {
         if (!pNeedManipulation) {
             return select(pQuery, pPreparator, pFetcher);
@@ -98,11 +96,11 @@ public abstract class Model implements Serializable {
 
     }
 
-    protected int update(String pQuery, Preparator<PreparedStatement> pPreparator) throws TechniqueException {
+    protected static int update(String pQuery, Preparator<PreparedStatement> pPreparator) throws TechniqueException {
         return update(pQuery, pPreparator, Statement.NO_GENERATED_KEYS);
     }
 
-    protected int update(String pQuery, Preparator<PreparedStatement> pPreparator, int pGeneratedKeysReturnMode)
+    protected static int update(String pQuery, Preparator<PreparedStatement> pPreparator, int pGeneratedKeysReturnMode)
             throws TechniqueException {
         try (Connection lConnection = DriverManager.getConnection(DB_URL, USER, PASS);
              PreparedStatement lStatement = lConnection.prepareStatement(pQuery)) {

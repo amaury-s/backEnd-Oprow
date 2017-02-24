@@ -1,5 +1,6 @@
 package com.oprow.bo;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,58 +8,50 @@ import java.util.List;
 public class Administration {
 
     protected int id;
-    protected Date openingTime;
-    protected Date closingTime;
+    protected Time morningOpeningTime;
+    protected Time morningClosingTime;
+    protected Time afternoonOpeningTime;
+    protected Time afternoonClosingTime;
     protected String name;
-    protected int estimatedWaitingTime;
-    protected List<Integer> affluence;
 
     public int getId() {
         return id;
-    }
-
-    public void generateRandomValues() {
-
-        this.affluence = new ArrayList<>();
-
-        this.affluence.add((int)(Math.random() * 100));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-
-    }
-
-    public List<Integer> getAffluence() {
-        return affluence;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public Date getOpeningTime() {
-        return openingTime;
+    public Time getMorningOpeningTime() {
+        return morningOpeningTime;
     }
 
-    public void setOpeningTime(Date openingTime) {
-        this.openingTime = openingTime;
+    public void setMorningOpeningTime(Time morningOpeningTime) {
+        this.morningOpeningTime = morningOpeningTime;
     }
 
-    public Date getClosingTime() {
-        return closingTime;
+    public Time getMorningClosingTime() {
+        return morningClosingTime;
     }
 
-    public void setClosingTime(Date closingTime) {
-        this.closingTime = closingTime;
+    public void setMorningClosingTime(Time morningClosingTime) {
+        this.morningClosingTime = morningClosingTime;
+    }
+
+    public Time getAfternoonOpeningTime() {
+        return afternoonOpeningTime;
+    }
+
+    public void setAfternoonOpeningTime(Time afternoonOpeningTime) {
+        this.afternoonOpeningTime = afternoonOpeningTime;
+    }
+
+    public Time getAfternoonClosingTime() {
+        return afternoonClosingTime;
+    }
+
+    public void setAfternoonClosingTime(Time afternoonClosingTime) {
+        this.afternoonClosingTime = afternoonClosingTime;
     }
 
     public String getName() {
@@ -69,11 +62,28 @@ public class Administration {
         this.name = name;
     }
 
-    public int getEstimatedWaitingTime() {
-        return estimatedWaitingTime;
+
+    public int mapOut(PreparedStatement pPreparedStatement) throws SQLException {
+        int lIterator = 1;
+        pPreparedStatement.setInt(lIterator++, this.id);
+        pPreparedStatement.setTime(lIterator++, this.morningClosingTime);
+        pPreparedStatement.setTime(lIterator++, this.morningOpeningTime);
+        pPreparedStatement.setTime(lIterator++, this.afternoonClosingTime);
+        pPreparedStatement.setTime(lIterator++, this.afternoonOpeningTime);
+        pPreparedStatement.setString(lIterator++, this.name);
+        return lIterator;
     }
 
-    public void setEstimatedWaitingTime(int estimatedWaitingTime) {
-        this.estimatedWaitingTime = estimatedWaitingTime;
+    public static Administration mapIn(ResultSet pResultSet) throws SQLException {
+        Administration lAdministration = new Administration();
+
+        lAdministration.id = pResultSet.getInt("id");
+        lAdministration.morningClosingTime = pResultSet.getTime("morningClosingTime");
+        lAdministration.morningOpeningTime = pResultSet.getTime("morningOpeningTime");
+        lAdministration.afternoonClosingTime = pResultSet.getTime("afternoonClosingTime");
+        lAdministration.afternoonOpeningTime = pResultSet.getTime("afternoonOpeningTime");
+        lAdministration.name = pResultSet.getString("name");
+
+        return lAdministration;
     }
 }

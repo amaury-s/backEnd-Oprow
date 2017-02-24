@@ -15,8 +15,7 @@ public class LoginService {
 
     @RequestMapping(method = RequestMethod.POST)
     @CrossOrigin(origins = "http://localhost:8100")
-    public @ResponseBody Token getShopInJSON(
-            @RequestBody User user) {
+    public @ResponseBody Token getShopInJSON(@RequestBody User user) {
 
         Token aToken = new Token();
         aToken.setToken("IJFNJNJKEJHIDJKSJBFHSKFS");

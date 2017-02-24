@@ -3,12 +3,9 @@ package com.oprow.models;
 import com.oprow.bo.User;
 import com.oprow.utils.TechniqueException;
 
-import java.sql.Statement;
-
-
 public class UserModel extends Model{
 
-    public int insertUser(User pUser) throws TechniqueException {
+    public static int insertUser(User pUser) throws TechniqueException {
         return update(
                 "INSERT INTO users(name, email)"
                         + "VALUES (?,?)",
@@ -17,7 +14,7 @@ public class UserModel extends Model{
                 });
     }
 
-    public User getUserFromId(int pId) throws TechniqueException {
+    public static User getUserFromId(int pId) throws TechniqueException {
         return select("SELECT * FROM users WHERE id = ?", lPreparedStatement -> {
             lPreparedStatement.setInt(1, pId);
         }, lResultSet -> {
