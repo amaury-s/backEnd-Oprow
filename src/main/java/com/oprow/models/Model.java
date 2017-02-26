@@ -16,7 +16,7 @@ public abstract class Model implements Serializable {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/oprow";
+    static final String DB_URL = "jdbc:mysql://localhost/oprow?verifyServerCertificate=false&useSSL=false&requireSSL=false";
 
     //  Database credentials
     static final String USER = "root";

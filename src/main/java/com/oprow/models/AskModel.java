@@ -1,9 +1,9 @@
 package com.oprow.models;
 
-import com.oprow.bo.Administration;
 import com.oprow.bo.Ask;
 import com.oprow.utils.TechniqueException;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +31,19 @@ public class AskModel extends Model{
                     }
             return listOfAsks;
         });
+    }
+
+    public static int getNumberOfAskForAPeriod(int pIdAdmin, Timestamp pArrivalTime, Timestamp pDepartureTime) throws TechniqueException {
+        return select("SELECT count(*) AS askcount FROM asks WHERE adminid = ? AND arrivalTime >= ? AND arrivalTime < ?",
+                lPreparedStatement -> {
+                    lPreparedStatement.setInt(1, pIdAdmin);
+                    lPreparedStatement.setTimestamp(2, pArrivalTime);
+                    lPreparedStatement.setTimestamp(3, pDepartureTime);
+                },
+                lResultSet -> {
+                    lResultSet.next();
+                    return lResultSet.getInt("askcount");
+                });
     }
 
     public static int insertAskForUser(Ask pAsk) throws TechniqueException{

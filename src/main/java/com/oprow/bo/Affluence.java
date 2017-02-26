@@ -12,7 +12,7 @@ public class Affluence {
     protected int adminId;
     protected String adminName;
     protected Timestamp date;
-    protected List<Integer> affluence;
+    protected int affluence;
 
     public int getAdminId() {
         return adminId;
@@ -30,11 +30,11 @@ public class Affluence {
         this.adminName = adminName;
     }
 
-    public List<Integer> getAffluence() {
+    public int getAffluence() {
         return affluence;
     }
 
-    public void setAffluence(List<Integer> affluence) {
+    public void setAffluence(int affluence) {
         this.affluence = affluence;
     }
 
@@ -44,27 +44,5 @@ public class Affluence {
 
     public void setDate(Timestamp date) {
         this.date = date;
-    }
-
-    //Methods
-
-    public void generateRandomValues() {
-
-        this.affluence = new ArrayList<>();
-
-        this.affluence.add((int)(Math.random() * 100));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-        this.affluence.add((this.affluence.get(this.affluence.size()-1)) + (-5)  + (int)(Math.random() * 10));
-
     }
 }

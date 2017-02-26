@@ -6,9 +6,9 @@ public class Ask {
 
     protected int adminId;
     protected int userId;
-    protected String type;
-    protected Time arrivalTime;
-    protected Time departureTime;
+    protected int serviceId;
+    protected Timestamp arrivalTime;
+    protected Timestamp departureTime;
 
     public int getAdminId() {
         return adminId;
@@ -26,27 +26,27 @@ public class Ask {
         this.userId = userId;
     }
 
-    public String getType() {
-        return type;
+    public int getServiceId() {
+        return serviceId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setServiceId(int serviceId) {
+        this.serviceId = serviceId;
     }
 
-    public Time getArrivalTime() {
+    public Timestamp getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(Time arrivalTime) {
+    public void setArrivalTime(Timestamp arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
-    public Time getDepartureTime() {
+    public Timestamp getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Time departureTime) {
+    public void setDepartureTime(Timestamp departureTime) {
         this.departureTime = departureTime;
     }
 
@@ -54,9 +54,9 @@ public class Ask {
         int lIterator = 1;
         pPreparedStatement.setInt(lIterator++, this.adminId);
         pPreparedStatement.setInt(lIterator++, this.userId);
-        pPreparedStatement.setString(lIterator++, this.type);
-        pPreparedStatement.setTime(lIterator++, this.arrivalTime);
-        pPreparedStatement.setTime(lIterator++, this.departureTime);
+        pPreparedStatement.setInt(lIterator++, this.serviceId);
+        pPreparedStatement.setTimestamp(lIterator++, this.arrivalTime);
+        pPreparedStatement.setTimestamp(lIterator++, this.departureTime);
         return lIterator;
     }
 
@@ -64,9 +64,9 @@ public class Ask {
         Ask lAsk = new Ask();
         lAsk.adminId = pResultSet.getInt("adminId");
         lAsk.userId= pResultSet.getInt("userId");
-        lAsk.type = pResultSet.getString("type");
-        lAsk.arrivalTime = pResultSet.getTime("arrivalTime");
-        lAsk.departureTime = pResultSet.getTime("departureTime");
+        lAsk.serviceId = pResultSet.getInt("serviceId");
+        lAsk.arrivalTime = pResultSet.getTimestamp("arrivalTime");
+        lAsk.departureTime = pResultSet.getTimestamp("departureTime");
 
         return lAsk;
     }
