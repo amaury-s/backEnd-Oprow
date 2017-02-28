@@ -22,8 +22,8 @@ public abstract class Model implements Serializable {
     static final String DB_URL = "jdbc:mysql://46.226.111.16:3306/oprow?verifyServerCertificate=false&useSSL=false&requireSSL=false";
 
     //  Database credentials
-    static final String USER = prop.getProperty("dbuser");
-    static final String PASS = prop.getProperty("dbpassword");
+    static final String USER = "root";
+    static final String PASS = "root";
 
     protected interface Preparator<P> {
         void invoke(P p) throws SQLException;
