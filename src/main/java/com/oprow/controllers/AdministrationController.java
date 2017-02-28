@@ -1,6 +1,5 @@
-package com.oprow.service;
+package com.oprow.controllers;
 
-import com.oprow.models.AdministrationModel;
 import org.springframework.web.bind.annotation.*;
 
 import com.oprow.bo.Administration;
@@ -9,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.oprow.models.AdministrationModel.*;
-import static com.oprow.service.SchedulesController.*;
+import static com.oprow.controllers.SchedulesController.*;
 
 
 @RestController
@@ -49,6 +48,9 @@ public class AdministrationController {
 
         try{
             listOfAdministration = getUserFavoriteAdministration(pIdUser);
+            for(Administration anAdmin: listOfAdministration){
+                anAdmin.setListOfSchedules(getListOfSchedulesForAnAdmin(anAdmin.getId()));
+            }
         }catch(Exception ex) {
             return listOfAdministration;
         }

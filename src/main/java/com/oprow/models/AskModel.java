@@ -1,5 +1,6 @@
 package com.oprow.models;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.oprow.bo.Ask;
 import com.oprow.utils.TechniqueException;
 
@@ -55,5 +56,19 @@ public class AskModel extends Model{
                 });
     }
 
+    public static List<Ask> getAllAskForServiceId(int pIdService) throws TechniqueException {
+        return select("SELECT * FROM asks WHERE serviceId = ?",
+                lPreparedStatement -> {
+                    lPreparedStatement.setInt(1, pIdService);
+                },
+                lResultSet -> {
+                    List<Ask> listOfAsk = new ArrayList<>();
+                    while (lResultSet.next()) {
+                        listOfAsk.add(Ask.mapIn(lResultSet));
+                    }
+                    return listOfAsk;
+                }
+                );
+    }
 
 }

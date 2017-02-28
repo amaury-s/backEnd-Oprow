@@ -1,12 +1,12 @@
-package com.oprow.service;
+package com.oprow.controllers;
 
 import com.oprow.bo.User;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import static com.oprow.models.UserModel.*;
 
-@Controller
+@RestController
+@RequestMapping("/users")
 public class UserController {
 
     /**

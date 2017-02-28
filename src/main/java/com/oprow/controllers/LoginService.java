@@ -1,12 +1,8 @@
-package com.oprow.service;
+package com.oprow.controllers;
 
 import com.oprow.bo.Token;
 import com.oprow.bo.User;
 import org.springframework.web.bind.annotation.*;
-
-import com.oprow.bo.User;
-
-import javax.servlet.http.HttpServletRequest;
 
 
 @RestController

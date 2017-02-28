@@ -1,14 +1,7 @@
-package com.oprow.service;
+package com.oprow.controllers;
 
-import com.oprow.bo.Affluence;
-import com.oprow.bo.Ask;
-import com.oprow.models.AdministrationModel;
 import org.springframework.web.bind.annotation.*;
 
-import com.oprow.bo.Administration;
-
-import java.sql.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;

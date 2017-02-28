@@ -1,22 +1,15 @@
-package com.oprow.service;
+package com.oprow.controllers;
 
 
-import com.oprow.bo.Administration;
 import com.oprow.bo.Ask;
-import com.oprow.models.AdministrationModel;
-import com.oprow.models.AskModel;
-import com.oprow.utils.TechniqueException;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.oprow.models.AskModel.*;
-import static com.oprow.service.AdministrationController.*;
-import static com.oprow.service.UserController.*;
-import static com.oprow.service.ServiceController.*;
+import static com.oprow.controllers.AdministrationController.*;
+import static com.oprow.controllers.ServiceController.*;
 
 
 @RestController
