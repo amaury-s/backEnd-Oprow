@@ -8,6 +8,7 @@ public class Ask {
     protected int userId;
     protected int serviceId;
     protected Timestamp arrivalTime;
+    protected Timestamp endWaitingTime;
     protected Timestamp departureTime;
 
     public int getAdminId() {
@@ -56,6 +57,7 @@ public class Ask {
         pPreparedStatement.setInt(lIterator++, this.userId);
         pPreparedStatement.setInt(lIterator++, this.serviceId);
         pPreparedStatement.setTimestamp(lIterator++, this.arrivalTime);
+        pPreparedStatement.setTimestamp(lIterator++, this.endWaitingTime);
         pPreparedStatement.setTimestamp(lIterator++, this.departureTime);
         return lIterator;
     }
@@ -66,6 +68,7 @@ public class Ask {
         lAsk.userId= pResultSet.getInt("userId");
         lAsk.serviceId = pResultSet.getInt("serviceId");
         lAsk.arrivalTime = pResultSet.getTimestamp("arrivalTime");
+        lAsk.endWaitingTime = pResultSet.getTimestamp("endWaitingTime");
         lAsk.departureTime = pResultSet.getTimestamp("departureTime");
 
         return lAsk;
