@@ -20,7 +20,7 @@ public class AdministrationController {
      */
     @RequestMapping(value="/list", method = RequestMethod.GET)
     @CrossOrigin(origins = "http://localhost:8100")
-    public @ResponseBody List<Administration> getAdminListInJSON() {
+    public @ResponseBody List<Administration> getAdminList() {
 
         List<Administration> listOfAdministration = new ArrayList<>();
 
@@ -42,7 +42,7 @@ public class AdministrationController {
      */
     @RequestMapping(value="/list/{pIdUser}", method = RequestMethod.GET)
     @CrossOrigin(origins = "http://localhost:8100")
-    public @ResponseBody List<Administration> getFavoriteAdminForUserInJSON(@PathVariable int pIdUser) {
+    public @ResponseBody List<Administration> getFavoriteAdminForUser(@PathVariable int pIdUser) {
 
         List<Administration> listOfAdministration = new ArrayList<>();
 
@@ -86,6 +86,23 @@ public class AdministrationController {
         }
 
         return "Administration added to the user list";
+
+    }
+
+    /**
+     * POST / --> Delete an administration to user's administration list
+     */
+    @RequestMapping(value="/delete/{pIdUser}/{pIdAdmin}", method = RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:8100")
+    public @ResponseBody String deleteAnAdministrationToUser(@PathVariable int pIdUser, @PathVariable int pIdAdmin) {
+
+        try{
+            deleteFavoriteAdministrationForUser(pIdUser,pIdAdmin);
+        }catch(Exception ex) {
+            return "Administration cannot be deleted to the user list";
+        }
+
+        return "Administration deleted to the user list";
 
     }
 

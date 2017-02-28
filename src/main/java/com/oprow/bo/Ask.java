@@ -10,9 +10,18 @@ public class Ask {
     protected String userName;
     protected int serviceId;
     protected String serviceName;
+    protected int dayOfWeek;
     protected Timestamp arrivalTime;
     protected Timestamp endWaitingTime;
     protected Timestamp departureTime;
+
+    public int getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public void setDayOfWeek(int dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
+    }
 
     public String getServiceName() {
         return serviceName;
@@ -94,6 +103,7 @@ public class Ask {
         pPreparedStatement.setTimestamp(lIterator++, this.arrivalTime);
         pPreparedStatement.setTimestamp(lIterator++, this.endWaitingTime);
         pPreparedStatement.setTimestamp(lIterator++, this.departureTime);
+        pPreparedStatement.setInt(lIterator++, this.dayOfWeek);
         return lIterator;
     }
 
@@ -105,6 +115,7 @@ public class Ask {
         lAsk.arrivalTime = pResultSet.getTimestamp("arrivalTime");
         lAsk.endWaitingTime = pResultSet.getTimestamp("endWaitingTime");
         lAsk.departureTime = pResultSet.getTimestamp("departureTime");
+        lAsk.dayOfWeek = pResultSet.getInt("dayOfWeek");
 
         return lAsk;
     }

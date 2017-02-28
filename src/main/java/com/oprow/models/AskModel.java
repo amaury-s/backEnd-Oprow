@@ -47,10 +47,10 @@ public class AskModel extends Model{
                 });
     }
 
-    public static int insertAskForUser(Ask pAsk) throws TechniqueException{
-        return update(
-                "INSERT INTO asks(adminId, userId, type, arrivalTime, departureTime)"
-                        + "VALUES (?,?,?,?,?)",
+    public static void insertAskForUser(Ask pAsk) throws TechniqueException{
+        update(
+                "INSERT INTO asks(adminId, userId, serviceId, arrivalTime, endWaitingTime, departureTime, dayOfWeek)"
+                        + "VALUES (?,?,?,?,?,?,?)",
                 lPreparedStatement -> {
                     pAsk.mapOut(lPreparedStatement);
                 });
@@ -69,6 +69,22 @@ public class AskModel extends Model{
                     return listOfAsk;
                 }
                 );
+    }
+
+    public static List<Ask> getAllAskByServiceAndAdmin(int pIdService, int pIdAdmin) throws TechniqueException {
+        return select("SELECT * FROM asks WHERE serviceId = ? and adminId = ?",
+                lPreparedStatement -> {
+                    lPreparedStatement.setInt(1, pIdService);
+                    lPreparedStatement.setInt(2, pIdAdmin);
+                },
+                lResultSet -> {
+                    List<Ask> listOfAsk = new ArrayList<>();
+                    while (lResultSet.next()) {
+                        listOfAsk.add(Ask.mapIn(lResultSet));
+                    }
+                    return listOfAsk;
+                }
+        );
     }
 
 }

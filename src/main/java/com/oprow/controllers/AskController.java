@@ -4,7 +4,10 @@ package com.oprow.controllers;
 import com.oprow.bo.Ask;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import static com.oprow.models.AskModel.*;
@@ -60,6 +63,10 @@ public class AskController {
      */
     @RequestMapping(value="/add", method = RequestMethod.POST)
     public @ResponseBody String addAnAskToUser(@RequestBody Ask pAsk) {
+
+        Calendar cal = GregorianCalendar.getInstance();
+        cal.setTimeInMillis(pAsk.getArrivalTime().getTime());
+        pAsk.setDayOfWeek(cal.get(Calendar.DAY_OF_WEEK));
 
         try{
             insertAskForUser(pAsk);

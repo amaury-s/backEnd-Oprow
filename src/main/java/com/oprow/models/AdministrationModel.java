@@ -46,24 +46,23 @@ public class AdministrationModel extends Model{
         );
     }
 
-    public static int insertAdministration(Administration pAdministration) throws TechniqueException {
-        return update(
-                "INSERT INTO administrations(morningOpeningTime, morningClosingTime, afternoonOpeningTime, " +
-                        "afternoonClosingTime, name)"
-                        + "VALUES (?,?,?,?,?)",
-                lPreparedStatement -> {
-                    pAdministration.mapOut(lPreparedStatement);
-                });
-    }
-
     public static int insertFavoriteAdministrationForUser(int pIdUser, int pIdAdmin) throws TechniqueException {
         return update(
-                "INSERT INTO favoriteAdministration(idUser, idAdministration)"
-                        + "VALUES (?,?)",
+                "INSERT INTO favoriteAdministration(idUser, idAdministration) VALUES (?,?)",
                 lPreparedStatement -> {
                     int lIterator = 1;
                     lPreparedStatement.setInt(lIterator++, pIdUser);
-                    lPreparedStatement.setInt(lIterator++, pIdAdmin);
+                    lPreparedStatement.setInt(lIterator, pIdAdmin);
+                });
+    }
+
+    public static int deleteFavoriteAdministrationForUser(int pIdUser, int pIdAdmin) throws TechniqueException {
+        return update(
+                "DELETE FROM favoriteAdministration WHERE idUser = ? AND idAdministration = ?",
+                lPreparedStatement -> {
+                    int lIterator = 1;
+                    lPreparedStatement.setInt(lIterator++, pIdUser);
+                    lPreparedStatement.setInt(lIterator, pIdAdmin);
                 });
     }
 
