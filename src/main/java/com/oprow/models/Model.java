@@ -10,17 +10,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 
 public abstract class Model implements Serializable {
 
+    public static Properties prop = new Properties();
+
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/oprow?verifyServerCertificate=false&useSSL=false&requireSSL=false";
+    static final String DB_URL = "jdbc:mysql://46.226.111.16:3306/oprow?verifyServerCertificate=false&useSSL=false&requireSSL=false";
 
     //  Database credentials
-    static final String USER = "root";
-    static final String PASS = "root";
+    static final String USER = prop.getProperty("dbuser");
+    static final String PASS = prop.getProperty("dbpassword");
 
     protected interface Preparator<P> {
         void invoke(P p) throws SQLException;

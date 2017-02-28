@@ -10,7 +10,7 @@ import static com.oprow.models.UserModel.*;
 public class UserController {
 
     /**
-     * GET / --> Create a new user and save it in the database.
+     * POST / --> Create a new user and save it in the database.
      */
     @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody
