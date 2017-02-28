@@ -61,7 +61,7 @@ public class AdministrationController {
      */
     @RequestMapping(value="/{pIdAdmin}", method = RequestMethod.GET)
     @CrossOrigin(origins = "http://localhost:8100")
-    public @ResponseBody Administration getAdministrationInJSON(@PathVariable int pIdAdmin) {
+    public static @ResponseBody Administration getAdministrationFromId(@PathVariable int pIdAdmin) {
         try{
             return getAdministrationFroId(pIdAdmin);
         }catch(Exception ex) {

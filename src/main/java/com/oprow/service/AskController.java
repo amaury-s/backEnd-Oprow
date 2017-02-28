@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.oprow.models.AskModel.*;
+import static com.oprow.service.AdministrationController.*;
+import static com.oprow.service.UserController.*;
+import static com.oprow.service.ServiceController.*;
+
 
 @RestController
 @RequestMapping("/asks")
@@ -27,6 +31,10 @@ public class AskController {
 
         try{
             listOfAsk = getAllAsk();
+            for(Ask anAsk: listOfAsk){
+                anAsk.setAdminName(getAdministrationFromId(anAsk.getAdminId()).getName());
+                anAsk.setServiceName(getServiceNameFromId(anAsk.getServiceId()));
+            }
         }catch(Exception ex) {
             return listOfAsk;
         }

@@ -5,11 +5,38 @@ import java.sql.*;
 public class Ask {
 
     protected int adminId;
+    protected String adminName;
     protected int userId;
+    protected String userName;
     protected int serviceId;
+    protected String serviceName;
     protected Timestamp arrivalTime;
     protected Timestamp endWaitingTime;
     protected Timestamp departureTime;
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public int getAdminId() {
         return adminId;
@@ -37,6 +64,14 @@ public class Ask {
 
     public Timestamp getArrivalTime() {
         return arrivalTime;
+    }
+
+    public Timestamp getEndWaitingTime() {
+        return endWaitingTime;
+    }
+
+    public void setEndWaitingTime(Timestamp endWaitingTime) {
+        this.endWaitingTime = endWaitingTime;
     }
 
     public void setArrivalTime(Timestamp arrivalTime) {
