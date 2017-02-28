@@ -2,28 +2,19 @@ package com.oprow.models;
 
 import com.oprow.utils.TechniqueException;
 
-import java.sql.*;
-
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Properties;
+import java.sql.*;
 
 
 public abstract class Model implements Serializable {
-
-    public static Properties prop = new Properties();
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://46.226.111.16:3306/oprow?verifyServerCertificate=false&useSSL=false&requireSSL=false";
 
     //  Database credentials
-    static final String USER = prop.getProperty("dbuser");
-    static final String PASS = prop.getProperty("dbpassword");
+    static final String USER = "root";
+    static final String PASS = "root";
 
     protected interface Preparator<P> {
         void invoke(P p) throws SQLException;

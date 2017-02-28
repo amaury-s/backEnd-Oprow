@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.oprow.models.AdministrationModel.*;
+import static com.oprow.service.SchedulesController.*;
 
 
 @RestController
@@ -26,6 +27,10 @@ public class AdministrationController {
 
         try{
             listOfAdministration = getAllAdministration();
+
+            for(Administration anAdmin: listOfAdministration){
+                anAdmin.setListOfSchedules(getListOfSchedulesForAnAdmin(anAdmin.getId()));
+            }
         }catch(Exception ex) {
             return listOfAdministration;
         }
