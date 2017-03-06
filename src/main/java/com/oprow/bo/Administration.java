@@ -55,7 +55,7 @@ public class Administration {
     public static Administration mapIn(ResultSet pResultSet) throws SQLException {
         Administration lAdministration = new Administration();
 
-        lAdministration.listOfServices = new ArrayList<>();
+        lAdministration.listOfServices = new ArrayList<Service>();
         lAdministration.listOfSchedules = new ArrayList<>();
 
         lAdministration.id = pResultSet.getInt("id");
