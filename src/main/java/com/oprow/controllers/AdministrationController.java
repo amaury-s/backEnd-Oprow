@@ -9,6 +9,7 @@ import java.util.List;
 
 import static com.oprow.models.AdministrationModel.*;
 import static com.oprow.controllers.SchedulesController.*;
+import static com.oprow.controllers.ServiceController.*;
 
 
 @RestController
@@ -65,7 +66,9 @@ public class AdministrationController {
     @CrossOrigin(origins = "http://localhost:8100")
     public static @ResponseBody Administration getAdministrationFromId(@PathVariable int pIdAdmin) {
         try{
-            return getAdministrationFroId(pIdAdmin);
+            Administration anAdmin = getAdministrationFroId(pIdAdmin);
+            anAdmin.setListOfServices(getServiceInJSON(anAdmin.getId()));
+            return anAdmin;
         }catch(Exception ex) {
             return null;
         }

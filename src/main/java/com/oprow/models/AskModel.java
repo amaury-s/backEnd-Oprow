@@ -1,6 +1,7 @@
 package com.oprow.models;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.oprow.bo.Administration;
 import com.oprow.bo.Ask;
 import com.oprow.utils.TechniqueException;
 
@@ -86,5 +87,7 @@ public class AskModel extends Model{
                 }
         );
     }
+
+
 
 }

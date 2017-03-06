@@ -10,6 +10,15 @@ public class Administration {
     protected int id;
     protected String name;
     protected List<Schedules> listOfSchedules;
+    protected List<Service> listOfServices;
+
+    public List<Service> getListOfServices() {
+        return listOfServices;
+    }
+
+    public void setListOfServices(List<Service> listOfServices) {
+        this.listOfServices.addAll(listOfServices);
+    }
 
     public List<Schedules> getListOfSchedules() {
         return listOfSchedules;
@@ -46,9 +55,13 @@ public class Administration {
     public static Administration mapIn(ResultSet pResultSet) throws SQLException {
         Administration lAdministration = new Administration();
 
+        lAdministration.listOfServices = new ArrayList<>();
+        lAdministration.listOfSchedules = new ArrayList<>();
+
         lAdministration.id = pResultSet.getInt("id");
         lAdministration.name = pResultSet.getString("name");
 
         return lAdministration;
     }
+
 }
