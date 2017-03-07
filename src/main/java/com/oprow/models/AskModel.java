@@ -87,6 +87,15 @@ public class AskModel extends Model{
                 }
         );
     }
+    public static int deleteAskForUser(int pIdUser, int pIdAsk) throws TechniqueException {
+        return update(
+                "DELETE FROM asks WHERE userId = ? AND askId = ?",
+                lPreparedStatement -> {
+                    int lIterator = 1;
+                    lPreparedStatement.setInt(lIterator++, pIdUser);
+                    lPreparedStatement.setInt(lIterator, pIdAsk);
+                });
+    }
 
 
 

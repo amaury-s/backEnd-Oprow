@@ -14,6 +14,7 @@ public class Ask {
     protected Timestamp arrivalTime;
     protected Timestamp endWaitingTime;
     protected Timestamp departureTime;
+    protected int askId;
 
     public int getDayOfWeek() {
         return dayOfWeek;
@@ -95,6 +96,14 @@ public class Ask {
         this.departureTime = departureTime;
     }
 
+    public int getaskId() {
+        return askId;
+    }
+
+    public void setaskId(int askId) {
+        this.askId = askId;
+    }
+
     public int mapOut(PreparedStatement pPreparedStatement) throws SQLException {
         int lIterator = 1;
         pPreparedStatement.setInt(lIterator++, this.adminId);
@@ -104,6 +113,7 @@ public class Ask {
         pPreparedStatement.setTimestamp(lIterator++, this.endWaitingTime);
         pPreparedStatement.setTimestamp(lIterator++, this.departureTime);
         pPreparedStatement.setInt(lIterator++, this.dayOfWeek);
+        pPreparedStatement.setInt(lIterator++, this.askId);
         return lIterator;
     }
 
@@ -116,6 +126,7 @@ public class Ask {
         lAsk.endWaitingTime = pResultSet.getTimestamp("endWaitingTime");
         lAsk.departureTime = pResultSet.getTimestamp("departureTime");
         lAsk.dayOfWeek = pResultSet.getInt("dayOfWeek");
+        lAsk.askId = pResultSet.getInt("askId");
 
         return lAsk;
     }

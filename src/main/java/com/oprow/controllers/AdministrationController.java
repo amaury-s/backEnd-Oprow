@@ -106,7 +106,6 @@ public class AdministrationController {
         }
 
         return "Administration deleted to the user list";
-
     }
 
 

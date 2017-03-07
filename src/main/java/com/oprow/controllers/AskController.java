@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import static com.oprow.models.AdministrationModel.deleteFavoriteAdministrationForUser;
 import static com.oprow.models.AskModel.*;
 import static com.oprow.controllers.AdministrationController.*;
 import static com.oprow.controllers.ServiceController.*;
@@ -78,6 +79,21 @@ public class AskController {
 
         return "Ask added for this user";
 
+    }
+    /**
+     * POST / --> Delete an ask to user's ask list
+     */
+    @RequestMapping(value="/delete/{pIdUser}/{pIdAsk}", method = RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:8100")
+    public @ResponseBody String deleteAnAskToUser(@PathVariable int pIdUser, @PathVariable int pIdAsk) {
+
+        try{
+            deleteAskForUser(pIdUser,pIdAsk);
+        }catch(Exception ex) {
+            return "Ask cannot be deleted to the user ask list";
+        }
+
+        return "Ask deleted to the user ask list";
     }
 
 
