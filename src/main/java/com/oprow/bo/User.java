@@ -1,5 +1,7 @@
 package com.oprow.bo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.PreparedStatement;
@@ -14,6 +16,7 @@ public class User {
     private String email;
     private String name;
     private String surname;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Timestamp birthDate;
     private int gender;
 
