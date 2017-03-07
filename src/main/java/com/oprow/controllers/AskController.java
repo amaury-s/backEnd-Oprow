@@ -62,6 +62,7 @@ public class AskController {
     /**
      * POST / --> Add and ask for a specific user
      */
+    @CrossOrigin(origins = "http://localhost:8100")
     @RequestMapping(value="/add", method = RequestMethod.POST)
     public @ResponseBody String addAnAskToUser(@RequestBody Ask pAsk) {
 

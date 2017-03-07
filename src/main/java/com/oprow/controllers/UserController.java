@@ -13,6 +13,7 @@ public class UserController {
      * POST / --> Create a new user and save it in the database.
      */
     @RequestMapping(method = RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:8100")
     public @ResponseBody
     String getShopInJSON(@RequestBody User user) {
 
