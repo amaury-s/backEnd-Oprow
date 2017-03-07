@@ -1,8 +1,13 @@
 package com.oprow.controllers;
 
+import com.oprow.bo.Ask;
 import com.oprow.bo.User;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.oprow.models.AskModel.getAskForUser;
 import static com.oprow.models.UserModel.*;
 
 @RestController
@@ -28,6 +33,20 @@ public class UserController {
         }
 
         return "User succesfully created";
+
+    }
+    /**
+     * GET / --> Return the list of ask for a specific user
+     */
+    @CrossOrigin(origins = "http://localhost:8100")
+    @RequestMapping(value="/{pIdUser}", method = RequestMethod.GET)
+    public @ResponseBody
+    User getUserInJSON(@PathVariable int pIdUser) {
+        try{
+            return getUserById(pIdUser);
+        }catch(Exception ex) {
+            return null;
+        }
 
     }
 

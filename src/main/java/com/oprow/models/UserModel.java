@@ -7,14 +7,14 @@ public class UserModel extends Model{
 
     public static int insertUser(User pUser) throws TechniqueException {
         return update(
-                "INSERT INTO users(name, email)"
-                        + "VALUES (?,?)",
+                "INSERT INTO users(name, email, surname,birthDate,gender)"
+                        + "VALUES (?,?,?,?,?)",
                 lPreparedStatement -> {
                     pUser.mapOut(lPreparedStatement);
                 });
     }
 
-    public static User getUserFromId(int pId) throws TechniqueException {
+    public static User getUserById(int pId) throws TechniqueException {
         return select("SELECT * FROM users WHERE id = ?", lPreparedStatement -> {
             lPreparedStatement.setInt(1, pId);
         }, lResultSet -> {
