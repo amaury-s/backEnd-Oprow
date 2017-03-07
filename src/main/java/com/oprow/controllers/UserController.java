@@ -1,5 +1,6 @@
 package com.oprow.controllers;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.oprow.bo.Ask;
 import com.oprow.bo.User;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,7 @@ public class UserController {
         return "User succesfully created";
 
     }
+
     /**
      * GET / --> Return the list of ask for a specific user
      */
@@ -48,7 +50,6 @@ public class UserController {
         }catch(Exception ex) {
             return null;
         }
-
     }
 
 }
